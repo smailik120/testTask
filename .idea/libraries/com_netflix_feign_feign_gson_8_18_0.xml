@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="com.netflix.feign:feign-gson:8.18.0" type="repository">
+    <properties maven-id="com.netflix.feign:feign-gson:8.18.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/netflix/feign/feign-gson/8.18.0/feign-gson-8.18.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/netflix/feign/feign-core/8.18.0/feign-core-8.18.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jvnet/animal-sniffer-annotation/1.0/animal-sniffer-annotation-1.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.5/gson-2.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
