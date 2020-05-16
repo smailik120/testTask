@@ -84,8 +84,8 @@ public class SearchOperation implements Operation {
             String query = "SELECT * FROM public.\"Buyers\" where name='" + lastName + "'";
             ResultSet resultSet = s.executeQuery(query);
             while (resultSet.next()) {
-                String buyerName = resultSet.getString(1);
-                String buyerLastName = resultSet.getString(2);
+                String buyerName = resultSet.getString("name");
+                String buyerLastName = resultSet.getString("lastName");
                 buyers.add(new Buyer(buyerName, buyerLastName));
             }
         } catch (SQLException throwables) {
@@ -98,11 +98,11 @@ public class SearchOperation implements Operation {
         List<Buyer> buyers = new ArrayList<Buyer>();
         try {
             Statement s = db.getConnection().createStatement();
-            String query = "SELECT buyer_id, product_name FROM public.\"Purchases\" GROUP BY buyer_id,product_name having COUNT(product_name) >= " + minTimes + " and product_name='" + productName + "'";
+            String query = "SELECT buyer_id, product_name, public.\"Buyers\".\"name\", public.\"Buyers\".\"lastName\" FROM public.\"Purchases\" inner join public.\"Buyers\" on buyer_id = id GROUP BY buyer_id,product_name, public.\"Buyers\".\"name\", public.\"Buyers\".\"lastName\" having COUNT(product_name) >= " + minTimes + " and product_name='" + productName + "'";
             ResultSet resultSet = s.executeQuery(query);
             while (resultSet.next()) {
-                String name = resultSet.getString(1);
-                String lastName = resultSet.getString(2);
+                String name = resultSet.getString("name");
+                String lastName = resultSet.getString("lastName");
                 buyers.add(new Buyer(name, lastName));
             }
         } catch (SQLException throwables) {
@@ -120,11 +120,10 @@ public class SearchOperation implements Operation {
             query = "CREATE TEMP TABLE t1 AS SELECT * FROM (select buyer_id, SUM(mul) from t group by buyer_id having SUM(mul) >= " + minExpenses + " and SUM(mul)<=" + maxExpenses + ") as PriceForEveryBuyer;";
             s.execute(query);
             query = "select name, public.\"Buyers\".\"lastName\" from public.\"Buyers\" inner join t1 on buyer_id = id;";
-            s.executeQuery(query);
             ResultSet resultSet = s.executeQuery(query);
             while (resultSet.next()) {
-                String name = resultSet.getString(1);
-                String lastName = resultSet.getString(2);
+                String name = resultSet.getString("name");
+                String lastName = resultSet.getString("lastName");
                 buyers.add(new Buyer(name, lastName));
             }
         } catch (SQLException throwables) {
@@ -143,8 +142,8 @@ public class SearchOperation implements Operation {
             ResultSet resultSet = s.executeQuery(query);
             while (resultSet.next() && counter < Double.parseDouble(badCustomers)) {
                 counter++;
-                String name = resultSet.getString(3);
-                String lastName = resultSet.getString(4);
+                String name = resultSet.getString("n");
+                String lastName = resultSet.getString("l");
                 buyers.add(new Buyer(name, lastName));
             }
         } catch (SQLException throwables) {

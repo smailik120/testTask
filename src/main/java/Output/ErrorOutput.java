@@ -1,6 +1,6 @@
 package Output;
 
-public class ErrorOutput {
+public class ErrorOutput implements Output{
     final String type = "error";
     public String message;
 

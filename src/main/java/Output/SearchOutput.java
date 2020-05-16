@@ -6,7 +6,7 @@ import models.Buyer;
 
 import java.util.List;
 
-public class SearchOutput {
+public class SearchOutput  implements Output {
     public final String type= "search";
     public List<Pair<Criteria, List<Buyer>>> results;
 

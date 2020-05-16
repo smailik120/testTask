@@ -1,6 +1,7 @@
 import Database.Database;
 import Database.PostgreSql;
 import Operations.SearchOperation;
+import Operations.StatOperation;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -24,6 +25,7 @@ public class Main {
         String input="";
         createConnection();
         SearchOperation op = new SearchOperation();
+        StatOperation op1 = new StatOperation();
         try {
             BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\stas\\Desktop\\input.json"));
             String temp;
@@ -38,5 +40,20 @@ public class Main {
             e.printStackTrace();
         }
         System.out.println(op.action(input));
+        input = "";
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\stas\\Desktop\\input1.json"));
+            String temp;
+            while(reader.ready()) {
+                input = input + reader.readLine();
+            }
+            System.out.println(input);
+            Gson gson = new Gson();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(op1.action(input));
     }
 }

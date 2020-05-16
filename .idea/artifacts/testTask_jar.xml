@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="testTask:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/testTask_jar</output-path>
+    <root id="archive" name="testTask.jar">
+      <element id="module-output" name="testTask" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/netflix/feign/feign-gson/8.18.0/feign-gson-8.18.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/netflix/feign/feign-core/8.18.0/feign-core-8.18.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jvnet/animal-sniffer-annotation/1.0/animal-sniffer-annotation-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.5/gson-2.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/postgresql/postgresql/9.2-1002-jdbc4/postgresql-9.2-1002-jdbc4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

@@ -20,6 +20,14 @@ public class Pair<T,V> {
         return results != null ? results.equals(pair.results) : pair.results == null;
     }
 
+    public T getCriteria() {
+        return criteria;
+    }
+
+    public V getResults() {
+        return results;
+    }
+
     @Override
     public int hashCode() {
         int result = criteria != null ? criteria.hashCode() : 0;
