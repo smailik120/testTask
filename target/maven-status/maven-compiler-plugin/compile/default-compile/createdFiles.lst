@@ -1,10 +1,12 @@
 Exceptions\ParseException.class
 Output\SearchOutput.class
+Writer\IWriter.class
 Parser\StatOperationParser.class
 Reader\IReader.class
 Criteria\ProductName.class
 Database\PostgreSql.class
 Operations\Operation.class
+Writer\JsonWriter.class
 Criteria\PassiveBuyers.class
 Main.class
 Output\Output.class

@@ -12,6 +12,7 @@ import Output.ErrorOutput;
 import Output.SearchOutput;
 import Parser.InputParser;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.beans.binding.ObjectBinding;
 import models.Buyer;
 
@@ -62,7 +63,9 @@ public class SearchOperation implements Operation {
     }
 
     public String action(String json) {
-        Gson gson = new Gson();
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
         String result = "";
         List<List<String>> pair = new InputParser().parse(json);
         try {

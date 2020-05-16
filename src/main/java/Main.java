@@ -2,7 +2,9 @@ import Database.Database;
 import Database.PostgreSql;
 import Operations.SearchOperation;
 import Operations.StatOperation;
+import Output.ErrorOutput;
 import Reader.JsonReader;
+import Writer.JsonWriter;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -25,12 +27,14 @@ public class Main {
         createConnection();
        String type = "search";
        String input = "C:\\inputs\\input.json";
-       //String output = args[2];
+       String output = "C:\\outputs\\output.json";
+        JsonWriter writer = new JsonWriter();
         if (type.equals("search")) {
             SearchOperation searchOperation = new SearchOperation();
             try {
                 String inputData = new JsonReader().read(input);
-                searchOperation.action(inputData);
+                String result = searchOperation.action(inputData);
+                writer.write(output, result);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -39,13 +43,19 @@ public class Main {
             StatOperation statOperation = new StatOperation();
             try {
                 String inputData = new JsonReader().read(input);
-                statOperation.action(inputData);
+                String result = statOperation.action(inputData);
+                writer.write(output, result);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         else {
-
+            ErrorOutput errorOutput = new ErrorOutput("operation with this type does not exist");
+            try {
+                writer.write(output, errorOutput.message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

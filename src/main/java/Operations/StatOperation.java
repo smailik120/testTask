@@ -7,6 +7,7 @@ import Output.Output;
 import Output.StatOutput;
 import Parser.StatOperationParser;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.util.Pair;
 import models.Buyer;
 import models.Customer;
@@ -24,7 +25,9 @@ public class StatOperation implements Operation {
     private PostgreSql db = PostgreSql.getDatabase();
 
     public String action(String json) {
-        Gson gson = new Gson();
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
         Pair<String, String> pair = new StatOperationParser().parse(json);
         String result = gson.toJson(getStat(pair.getKey(), pair.getValue()));
         return result;
