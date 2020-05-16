@@ -1,0 +1,11 @@
+{
+"criterias": [
+ {"lastName": "Alex"},
+ {"lastName": "Gavr"},
+ {"productName": "Tomatoes", "minTimes": 2},
+ {"productName": "Bread", "minTimes": 2},
+  {"productName": "Yogurt", "minTimes": 1},
+ {"minExpenses": 1, "maxExpenses": 140},
+ {"badCustomers": 4} 
+ ]
+}

@@ -1,0 +1,114 @@
+{
+  "type": "search",
+  "results": [
+    {
+      "criteria": {
+        "lastName": "Alex"
+      },
+      "results": [
+        {
+          "name": "Alex",
+          "lastName": "Astrov"
+        },
+        {
+          "name": "Alex",
+          "lastName": "Ivanovich"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "lastName": "Gavr"
+      },
+      "results": [
+        {
+          "name": "Gavr",
+          "lastName": "Gavrilovich"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "productName": "Tomatoes",
+        "minTimes": 2
+      },
+      "results": [
+        {
+          "name": "Alex",
+          "lastName": "Ivanovich"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "productName": "Bread",
+        "minTimes": 2
+      },
+      "results": [
+        {
+          "name": "Gavr",
+          "lastName": "Gavrilovich"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "productName": "Yogurt",
+        "minTimes": 1
+      },
+      "results": [
+        {
+          "name": "Alex",
+          "lastName": "Astrov"
+        },
+        {
+          "name": "Gavr",
+          "lastName": "Gavrilovich"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "minExpenses": 1,
+        "maxExpenses": 140
+      },
+      "results": [
+        {
+          "name": "Ivan",
+          "lastName": "Ivanovich"
+        },
+        {
+          "name": "Gavr",
+          "lastName": "Gavrilovich"
+        },
+        {
+          "name": "Alex",
+          "lastName": "Ivanovich"
+        }
+      ]
+    },
+    {
+      "criteria": {
+        "badCustomers": 4
+      },
+      "results": [
+        {
+          "name": "Ivan",
+          "lastName": "Ivanovich"
+        },
+        {
+          "name": "Alex",
+          "lastName": "Ivanovich"
+        },
+        {
+          "name": "Alex",
+          "lastName": "Astrov"
+        },
+        {
+          "name": "Gavr",
+          "lastName": "Gavrilovich"
+        }
+      ]
+    }
+  ]
+}

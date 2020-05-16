@@ -7,8 +7,8 @@ import models.Buyer;
 
 import java.util.*;
 
-public class InputParser implements IParser{
-    public List<List<String>> parse(String json) {
+public class InputParser implements IParser {
+    public List<List<String>> parse(String json) throws NullPointerException {
         Gson gson = new Gson();
         List<List<String>> parseResult = new ArrayList<List<String>>();
         Map<String, Object> map = gson.fromJson(json, Map.class);

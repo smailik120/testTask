@@ -1,4 +1,5 @@
 package Operations;
+
 import Database.PostgreSql;
 import Exceptions.NegativeDateException;
 import Other.DateWrapper;
@@ -12,6 +13,7 @@ import javafx.util.Pair;
 import models.Buyer;
 import models.Customer;
 import models.Product;
+import org.postgresql.util.PSQLException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,17 +26,18 @@ import java.util.*;
 public class StatOperation implements Operation {
     private PostgreSql db = PostgreSql.getDatabase();
 
-    public String action(String json) {
+    public String action(String json) throws SQLException {
+        String result = "";
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
         Pair<String, String> pair = new StatOperationParser().parse(json);
-        String result = gson.toJson(getStat(pair.getKey(), pair.getValue()));
+        result = gson.toJson(getStat(pair.getKey(), pair.getValue()));
         return result;
     }
 
-    private Output getStat(String startDate, String endDate) {
-        StatOutput output = null;
+    private Output getStat(String startDate, String endDate) throws SQLException {
+        Output output = null;
         int sum;
         int totalExpenses = 0;
         int counter = 0;
@@ -44,7 +47,7 @@ public class StatOperation implements Operation {
         Statement s;
         try {
             s = db.getConnection().createStatement();
-            String query = "create temp table t3 as select * from (select buyer_id, product_name, Count(product_name), public.\"Products\".\"price\" as price, price*Count(product_name) as sum  from public.\"Purchases\" inner join public.\"Products\" on product_name = name where date >= '" + startDate +"' and date <= '" + endDate + "' group by buyer_id, product_name, price order by sum desc) as b;";
+            String query = "create temp table t3 as select * from (select buyer_id, product_name, Count(product_name), public.\"Products\".\"price\" as price, price*Count(product_name) as sum  from public.\"Purchases\" inner join public.\"Products\" on product_name = name where date >= '" + startDate + "' and date <= '" + endDate + "' group by buyer_id, product_name, price order by sum desc) as b;";
             s.execute(query);
             query = "select sum, public.\"Buyers\".\"name\", public.\"Buyers\".\"lastName\", product_name, buyer_id from t3 inner join public.\"Buyers\" on buyer_id = id;";
             ResultSet resultSet = s.executeQuery(query);
@@ -59,12 +62,11 @@ public class StatOperation implements Operation {
                     List<Product> products = new ArrayList<Product>();
                     products.add(p);
                     result.put(key, products);
-                }
-                else {
+                } else {
                     result.get(key).add(p);
                 }
             }
-            for(Pair<Integer, String> pair: result.keySet()) {
+            for (Pair<Integer, String> pair : result.keySet()) {
                 sum = 0;
                 for (Product products : result.get(pair)) {
                     sum = sum + products.getExpenses();
@@ -82,14 +84,12 @@ public class StatOperation implements Operation {
                 return new ErrorOutput(e.getMessage());
             }
             try {
-                System.out.println(days);
                 output = new StatOutput((int) days, customers, totalExpenses, totalExpenses / counter);
-            }
-            catch (ArithmeticException e) {
+            } catch (ArithmeticException e) {
                 output = new StatOutput((int) days, customers, totalExpenses, 0);
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (PSQLException throwables) {
+            output = new ErrorOutput("error");
         }
         return output;
     }

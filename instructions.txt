@@ -1,0 +1,5 @@
+Для сборки проекта используется maven 
+чтобы собрать проект нужно зайти в папку проекта и написать mvn install
+после этой команды в папке target появится jar file с зависимостями testTask-1.0-SNAPSHOT-jar-with-dependencies.jar
+для запуска нужно написать java -jar testTask-1.0-SNAPSHOT-jar-with-dependencies.jar type(тип операции(search, stat)) путь к входному файлу путь к выходному файлу
+все ресурсы лежат в проекте в папке resources(дамп для бд, и входные и выходные файлы))
