@@ -2,7 +2,7 @@ import Database.Database;
 import Database.PostgreSql;
 import Operations.SearchOperation;
 import Operations.StatOperation;
-import com.google.gson.Gson;
+import Reader.JsonReader;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -22,38 +22,31 @@ public class Main {
         PostgreSql.setPort("5432");
     }
     public static void main(String[] args) {
-        String input="";
         createConnection();
-        SearchOperation op = new SearchOperation();
-        StatOperation op1 = new StatOperation();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\stas\\Desktop\\input.json"));
-            String temp;
-            while(reader.ready()) {
-                input = input + reader.readLine();
+       String type = "search";
+       String input = "C:\\inputs\\input.json";
+       //String output = args[2];
+        if (type.equals("search")) {
+            SearchOperation searchOperation = new SearchOperation();
+            try {
+                String inputData = new JsonReader().read(input);
+                searchOperation.action(inputData);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            System.out.println(input);
-            Gson gson = new Gson();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        System.out.println(op.action(input));
-        input = "";
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\stas\\Desktop\\input1.json"));
-            String temp;
-            while(reader.ready()) {
-                input = input + reader.readLine();
+        else if (type.equals("stat")) {
+            StatOperation statOperation = new StatOperation();
+            try {
+                String inputData = new JsonReader().read(input);
+                statOperation.action(inputData);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            System.out.println(input);
-            Gson gson = new Gson();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        System.out.println(op1.action(input));
+        else {
+
+        }
+
     }
 }

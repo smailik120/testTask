@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/testTask_jar</output-path>
     <root id="archive" name="testTask.jar">
       <element id="module-output" name="testTask" />
+      <element id="module-test-output" name="testTask" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/netflix/feign/feign-gson/8.18.0/feign-gson-8.18.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/netflix/feign/feign-core/8.18.0/feign-core-8.18.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jvnet/animal-sniffer-annotation/1.0/animal-sniffer-annotation-1.0.jar" path-in-jar="/" />

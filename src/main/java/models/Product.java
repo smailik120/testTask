@@ -20,7 +20,4 @@ public class Product {
         return expenses;
     }
 
-    public void setExpenses(int expenses) {
-        this.expenses = expenses;
-    }
 }

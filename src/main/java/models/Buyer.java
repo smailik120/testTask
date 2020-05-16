@@ -4,16 +4,16 @@ public class Buyer {
     private String name;
     private String lastName;
 
-    public Buyer(String name, String surname) {
+    public Buyer(String name, String lastName) {
         this.name = name;
-        this.lastName = surname;
+        this.lastName = lastName;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getSurname() {
+    public String getLastName() {
         return lastName;
     }
 
