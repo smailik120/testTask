@@ -10,8 +10,8 @@ public class StatOutput  implements Output {
     private int totalDays;
     private List<Customer> customers;
     private int totalExpenses;
-    private int avgExpenses;
-    public StatOutput(int totalDays, List<Customer> customers, int totalExpenses, int avgExpenses) {
+    private double avgExpenses;
+    public StatOutput(int totalDays, List<Customer> customers, int totalExpenses, double avgExpenses) {
         this.type = "stat";
         this.totalDays = totalDays;
         this.customers = customers;

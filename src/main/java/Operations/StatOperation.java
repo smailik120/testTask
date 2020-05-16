@@ -84,7 +84,8 @@ public class StatOperation implements Operation {
                 return new ErrorOutput(e.getMessage());
             }
             try {
-                output = new StatOutput((int) days, customers, totalExpenses, totalExpenses / counter);
+                double avg = (double)(totalExpenses) / counter;
+                output = new StatOutput((int) days, customers, totalExpenses, avg);
             } catch (ArithmeticException e) {
                 output = new StatOutput((int) days, customers, totalExpenses, 0);
             }
